@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.810.19
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReservationSystem", "RestaurantReservationSystem\RestaurantReservationSystem.csproj", "{B2D9CB2B-C7DD-4712-AC32-270703E22A39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReservationSystem.UnitTests", "RestaurantReservationSystem.UnitTests\RestaurantReservationSystem.UnitTests.csproj", "{2340D600-583A-4D12-BB1E-6AB89BC4277E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -15,6 +17,10 @@ Global
 		{B2D9CB2B-C7DD-4712-AC32-270703E22A39}.Debug|anycpu.Build.0 = Debug|anycpu
 		{B2D9CB2B-C7DD-4712-AC32-270703E22A39}.Release|anycpu.ActiveCfg = Release|anycpu
 		{B2D9CB2B-C7DD-4712-AC32-270703E22A39}.Release|anycpu.Build.0 = Release|anycpu
+		{2340D600-583A-4D12-BB1E-6AB89BC4277E}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{2340D600-583A-4D12-BB1E-6AB89BC4277E}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{2340D600-583A-4D12-BB1E-6AB89BC4277E}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{2340D600-583A-4D12-BB1E-6AB89BC4277E}.Release|anycpu.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
