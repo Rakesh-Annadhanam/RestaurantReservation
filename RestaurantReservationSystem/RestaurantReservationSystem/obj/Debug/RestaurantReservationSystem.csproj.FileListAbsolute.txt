@@ -1,0 +1,6 @@
+/Users/rakesh/Projects/RestaurantReservationSystem/RestaurantReservationSystem/bin/Debug/RestaurantReservationSystem.exe
+/Users/rakesh/Projects/RestaurantReservationSystem/RestaurantReservationSystem/bin/Debug/RestaurantReservationSystem.pdb
+/Users/rakesh/Projects/RestaurantReservationSystem/RestaurantReservationSystem/obj/Debug/RestaurantReservationSystem.csproj.AssemblyReference.cache
+/Users/rakesh/Projects/RestaurantReservationSystem/RestaurantReservationSystem/obj/Debug/RestaurantReservationSystem.csproj.CoreCompileInputs.cache
+/Users/rakesh/Projects/RestaurantReservationSystem/RestaurantReservationSystem/obj/Debug/RestaurantReservationSystem.exe
+/Users/rakesh/Projects/RestaurantReservationSystem/RestaurantReservationSystem/obj/Debug/RestaurantReservationSystem.pdb
