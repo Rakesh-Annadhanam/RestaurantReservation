@@ -13,6 +13,7 @@ namespace RestaurantReservationSystem
             restaurant.AddReservation(DateTime.Now,4,"Rakesh",Period.OneHour);
             restaurant.AddReservation(DateTime.Now,4, "Rabi", Period.OneHour);
             restaurant.FindReservationById(1);
+            restaurant.CancelReservationById(2);
             restaurant.FindReservationById(2);
         }
     }
