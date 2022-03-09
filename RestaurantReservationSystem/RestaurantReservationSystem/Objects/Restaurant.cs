@@ -127,6 +127,18 @@ namespace RestaurantReservationSystem.Objects
             }
         }
 
-        
+        public void CancelReservationById(int id)
+        {
+            var reservation = reservations.Find(x => x.Id == id);
+            if (reservation == null)
+                Console.WriteLine("Sorry Can't find the reservation");
+            else
+            {
+                reservations.Remove(reservation);
+                
+                Console.WriteLine($"Reservation with Id {id} is cancelled");
+
+            }
+        }
     }
 }
