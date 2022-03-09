@@ -5,28 +5,35 @@ namespace RestaurantReservationSystem.Objects
 {
     public class Restaurant
     {
+        #region private fields
+        private int reservationMaxId = 0;
+
+        private const string OpeningTime = "9AM";
+
+        private const string ClosingTime = "9PM";
+
+        private List<Reservation> Reservations;
+
+        private List<Table> Tables;
+        #endregion
+
         public Restaurant()
         {
-            reservations = new List<Reservation>();
+            Reservations = new List<Reservation>();
             InitializeTables();
         }
-        private List<Reservation> reservations;
-        private List<Table> tables;
+
+        #region private methods
 
         private void InitializeTables()
         {
-            tables = new List<Table>();
-            for(int i = 0; i < 1; i++)
+            Tables = new List<Table>();
+            for (int i = 0; i < 1; i++)
             {
-                tables.Add(new Table(4));
+                Tables.Add(new Table(4));
             }
         }
 
-
-        private const string OpeningTime = "9AM";
-        private const string ClosingTime = "9PM";
-
-        private int reservationMaxId = 0;
         private DateTime? CalculateEndTime(DateTime startTime, Period period)
         {
             DateTime? endtime = null;
@@ -49,39 +56,6 @@ namespace RestaurantReservationSystem.Objects
 
         }
 
-        public void AddReservation(DateTime starttime,int people,string name,Period period)
-        {
-            try
-            {
-                if(starttime.Hour < 9)
-                {
-                    Console.WriteLine("Please select a start time greater than 9AM");
-                    return;
-                }
-
-                var endtime = (DateTime)CalculateEndTime(starttime, period);
-                if(endtime.Hour > 21)
-                {
-                    Console.WriteLine("Please select a end time less than 9PM");
-                    return;
-                }
-
-                var tables = GetTables(starttime, endtime,people);
-                var reservation = new Reservation(people, starttime, endtime, name);
-                reservation.AssignTables(tables);
-                AssignReservationtoTables(tables, reservation);
-                reservationMaxId++;
-                reservation.AssignId(reservationMaxId);
-                reservations.Add(reservation);
-                Console.WriteLine($"Your reservation is successful. Here is Id - {reservation.Id}");
-
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Sorry no tables are available at that time");
-            }
-        }
-
         private void AssignReservationtoTables(List<Table> tables, Reservation reservation)
         {
             foreach(var table in tables)
@@ -90,11 +64,11 @@ namespace RestaurantReservationSystem.Objects
             }
         }
 
-        private List<Table> GetTables(DateTime startTime, DateTime endTime,int persons)
+        private List<Table> GetTablesToReserved(DateTime startTime, DateTime endTime,int persons)
         {
             int accountedPersons = 0;
             List<Table> reservedTables = new List<Table>();
-            foreach (var table in tables)
+            foreach (var table in Tables)
             {
                 if (table.CheckAvailability(startTime,endTime))
                 {
@@ -115,9 +89,47 @@ namespace RestaurantReservationSystem.Objects
                 throw new Exception("Not Available");
             }
         }
+
+        #endregion
+
+        #region public methods
+
+        public void AddReservation(DateTime starttime, int people, string name, Period period)
+        {
+            try
+            {
+                if (starttime.Hour < 9)
+                {
+                    Console.WriteLine("Please select a start time greater than 9AM");
+                    return;
+                }
+
+                var endtime = (DateTime)CalculateEndTime(starttime, period);
+                if (endtime.Hour > 21)
+                {
+                    Console.WriteLine("Please select a end time less than 9PM");
+                    return;
+                }
+
+                var tablesToBeReserved = GetTablesToReserved(starttime, endtime, people);
+                var currentReservation = new Reservation(people, starttime, endtime, name);
+                currentReservation.AssignTables(tablesToBeReserved);
+                AssignReservationtoTables(tablesToBeReserved, currentReservation);
+                reservationMaxId++;
+                currentReservation.AssignId(reservationMaxId);
+                Reservations.Add(currentReservation);
+                Console.WriteLine($"Your reservation is successful. Here is Id - {currentReservation.Id}");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Sorry no tables are available at that time");
+            }
+        }
+
         public void FindReservationById(int id)
         {
-            var reservation =  reservations.Find(x => x.Id == id);
+            var reservation =  Reservations.Find(x => x.Id == id);
             if(reservation == null)
                 Console.WriteLine("Sorry Can't find the reservation");
             else
@@ -129,12 +141,12 @@ namespace RestaurantReservationSystem.Objects
 
         public void CancelReservationById(int id)
         {
-            var reservation = reservations.Find(x => x.Id == id);
+            var reservation = Reservations.Find(x => x.Id == id);
             if (reservation == null)
                 Console.WriteLine("Sorry Can't find the reservation");
             else
             {
-                reservations.Remove(reservation);
+                Reservations.Remove(reservation);
                 foreach(var table in reservation.Tables)
                 {
                     table.RemoveReservation(reservation);
@@ -143,5 +155,7 @@ namespace RestaurantReservationSystem.Objects
 
             }
         }
+
+        #endregion 
     }
 }
