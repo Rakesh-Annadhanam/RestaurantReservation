@@ -33,5 +33,9 @@ namespace RestaurantReservationSystem.Objects
                 
         }
 
+        public void RemoveReservation(Reservation reservation)
+        {
+            reservations.Remove(reservation);
+        }
     }
 }

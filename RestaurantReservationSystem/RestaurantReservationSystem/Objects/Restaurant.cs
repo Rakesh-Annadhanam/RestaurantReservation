@@ -135,7 +135,10 @@ namespace RestaurantReservationSystem.Objects
             else
             {
                 reservations.Remove(reservation);
-                
+                foreach(var table in reservation.Tables)
+                {
+                    table.RemoveReservation(reservation);
+                }
                 Console.WriteLine($"Reservation with Id {id} is cancelled");
 
             }
